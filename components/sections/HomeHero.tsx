@@ -15,10 +15,13 @@ export function HomeHero() {
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   const titleWords = ["Camp", "Lovište"];
-  const subWords = ["Where", "the", "Adriatic", "begins."];
 
   return (
-    <section ref={ref} className="relative h-screen min-h-[640px] overflow-hidden flex items-center justify-center">
+    <section
+      ref={ref}
+      className="relative overflow-hidden flex items-center justify-center"
+      style={{ height: "110vh", minHeight: "860px" }}
+    >
       {/* Parallax image */}
       <motion.div className="absolute inset-0 scale-110" style={{ y: imageY }}>
         <Image
@@ -31,12 +34,11 @@ export function HomeHero() {
         />
       </motion.div>
 
-      {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/65" />
 
-      {/* Centered content */}
+      {/* Content column */}
       <motion.div
-        className="relative z-10 text-center px-6 max-w-5xl mx-auto"
+        className="relative z-10 flex flex-col items-center text-center px-6 max-w-4xl mx-auto"
         style={{ y: contentY }}
       >
         {/* Eyebrow */}
@@ -44,15 +46,15 @@ export function HomeHero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-mono text-xs uppercase tracking-[0.35em] text-white/55 mb-8 flex items-center justify-center gap-3"
+          className="font-mono text-xs uppercase tracking-[0.35em] text-white/55 mb-12 flex items-center gap-3"
         >
           <span className="w-8 h-px bg-white/30" />
           Viganj · Lovište · Pelješac
           <span className="w-8 h-px bg-white/30" />
         </motion.p>
 
-        {/* Main title */}
-        <h1 className="font-display font-bold text-white leading-[0.92] tracking-tight mb-6">
+        {/* Title words only */}
+        <h1 className="font-display font-bold text-white leading-[0.92] tracking-tight w-full mb-6">
           <div className="overflow-hidden">
             {titleWords.map((word, i) => (
               <motion.span
@@ -66,61 +68,52 @@ export function HomeHero() {
               </motion.span>
             ))}
           </div>
-          <div className="overflow-hidden mt-1">
-            {subWords.map((word, i) => (
-              <motion.span
-                key={i}
-                className="inline-block mr-3 last:mr-0 text-[clamp(1.4rem,3.2vw,2.8rem)] font-normal italic text-white/75"
-                initial={{ y: "110%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.9, delay: 0.7 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {word}
-              </motion.span>
-            ))}
-          </div>
         </h1>
 
-        {/* Subtext */}
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.1 }}
-          className="text-white/65 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12"
-        >
-          A family-run campsite four generations deep, on the unspoiled western tip of Pelješac. Camping plots, guest houses, private house & apartments — all steps from the sea.
-        </motion.p>
+        {/* Subtitle — separate element so margin is reliable */}
+        <div className="overflow-hidden mb-20">
+          <motion.p
+            className="text-[clamp(1.4rem,3.2vw,2.8rem)] font-display font-normal italic text-white/75"
+            initial={{ y: "110%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Where the Adriatic begins.
+          </motion.p>
+        </div>
 
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.3 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          transition={{ duration: 0.9, delay: 1.1 }}
+          className="flex flex-col sm:flex-row gap-5 justify-center"
         >
           <Link
             href="/stay"
-            className="px-9 py-4 bg-white text-[--color-sea] font-semibold text-sm hover:bg-white/90 transition-colors duration-300 inline-block"
+            style={{ padding: "16px 44px", fontSize: "1rem" }}
+            className="rounded-full bg-white text-[--color-sea] font-semibold hover:bg-white/90 transition-colors duration-300"
           >
             See All Accommodation
           </Link>
           <Link
             href="/story"
-            className="px-9 py-4 border-2 border-white/50 text-white font-semibold text-sm hover:border-white hover:bg-white/10 transition-all duration-300 inline-block"
+            style={{ padding: "16px 44px", fontSize: "1rem" }}
+            className="rounded-full border-2 border-white/50 text-white font-semibold hover:border-white hover:bg-white/10 transition-all duration-300"
           >
             Our Story
           </Link>
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — pinned to bottom of hero */}
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
       >
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/35">Scroll</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40">Scroll</span>
         <motion.div
           className="w-px h-10 bg-gradient-to-b from-white/40 to-transparent"
           animate={{ scaleY: [0, 1, 0] }}

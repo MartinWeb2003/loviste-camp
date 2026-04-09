@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
 const options = [
@@ -40,21 +40,27 @@ const options = [
 
 export function HomeStayTeaser() {
   return (
-    <section className="bg-white py-40 lg:py-60">
+    <section className="bg-white py-44 lg:py-64">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <FadeIn className="mb-24 text-center">
-          <SectionLabel className="justify-center">Where You&apos;ll Sleep</SectionLabel>
-          <h2 className="font-display text-[clamp(2.8rem,7vw,6rem)] font-bold text-[--color-ink] leading-tight">
-            Four Ways to Stay
-          </h2>
-          <p className="mt-8 text-[--color-muted] text-xl max-w-2xl mx-auto leading-relaxed">
-            Whether you arrive in a campervan or want a fully serviced house, we have the right space for you.
-          </p>
-        </FadeIn>
+        <div className="mb-28 text-center">
+          <ScrollReveal variant="fade">
+            <SectionLabel className="justify-center">Where You&apos;ll Sleep</SectionLabel>
+          </ScrollReveal>
+          <ScrollReveal variant="clip" delay={0.1}>
+            <h2 className="font-display text-[clamp(2.8rem,7vw,6rem)] font-bold text-[--color-ink] leading-tight">
+              Four Ways to Stay
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal variant="fade" delay={0.2}>
+            <p className="mt-10 text-[--color-muted] text-xl max-w-2xl mx-auto leading-relaxed">
+              Whether you arrive in a campervan or want a fully serviced house, we have the right space for you.
+            </p>
+          </ScrollReveal>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[--color-stone]">
           {options.map((opt, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
+            <ScrollReveal key={i} variant="scale" delay={i * 0.1}>
               <div className="bg-white group overflow-hidden">
                 {/* Image */}
                 <div className="relative aspect-[16/10] overflow-hidden">
@@ -62,10 +68,10 @@ export function HomeStayTeaser() {
                     src={opt.image}
                     alt={opt.alt}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-103"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
-                  <div className="absolute top-5 left-5 bg-white/90 backdrop-blur-sm px-3 py-1.5">
+                  <div className="absolute top-5 left-5 bg-white/90 backdrop-blur-sm px-4 py-2">
                     <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[--color-sea]">
                       {opt.tag}
                     </span>
@@ -73,14 +79,14 @@ export function HomeStayTeaser() {
                 </div>
 
                 {/* Text */}
-                <div className="p-10 lg:p-12">
-                  <h3 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] font-bold text-[--color-ink] leading-tight mb-4">
+                <div className="p-12 lg:p-14">
+                  <h3 className="font-display text-[clamp(1.8rem,3vw,2.8rem)] font-bold text-[--color-ink] leading-tight mb-6">
                     {opt.title}
                   </h3>
-                  <p className="text-[--color-muted] text-lg leading-relaxed mb-6">
+                  <p className="text-[--color-muted] text-lg leading-relaxed mb-8">
                     {opt.desc}
                   </p>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between pt-6 border-t border-[--color-stone]">
                     <span className="font-mono text-sm text-[--color-sea]">{opt.from}</span>
                     <Link
                       href="/stay"
@@ -91,18 +97,21 @@ export function HomeStayTeaser() {
                   </div>
                 </div>
               </div>
-            </FadeIn>
+            </ScrollReveal>
           ))}
         </div>
 
-        <FadeIn className="mt-12 text-center">
-          <Link
-            href="/stay"
-            className="inline-block px-10 py-5 bg-[--color-sea] text-white font-semibold text-sm hover:bg-[--color-sea-hover] transition-colors duration-300"
-          >
-            View All Accommodation
-          </Link>
-        </FadeIn>
+        <ScrollReveal variant="rise" delay={0.1}>
+          <div className="mt-20 text-center">
+            <Link
+              href="/stay"
+              className="group inline-flex items-center gap-5 bg-[--color-sea] text-white font-semibold uppercase tracking-[0.22em] px-16 py-7 text-xs hover:bg-[--color-sea-hover] transition-all duration-400"
+            >
+              View All Accommodation
+              <span className="transition-transform duration-400 group-hover:translate-x-2 inline-block">→</span>
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

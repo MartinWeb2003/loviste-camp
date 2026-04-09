@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { ParallaxImage } from "@/components/ui/ParallaxImage";
+import { ScrollTextReveal } from "@/components/ui/ScrollTextReveal";
 import { DramaticCTA } from "@/components/ui/DramaticCTA";
 import {
   FaWater, FaAnchor, FaWineGlass,
@@ -103,18 +105,14 @@ function KorculaSection() {
         </ScrollReveal>
       </div>
 
-      {/* Image below */}
-      <ScrollReveal variant="scale">
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "21/9" }}>
-          <Image
-            src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=85"
-            alt="Korčula old town rising from the sea"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-      </ScrollReveal>
+      {/* Image below — parallax */}
+      <ParallaxImage
+        src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=85"
+        alt="Korčula old town rising from the sea"
+        aspect="21/9"
+        depth={18}
+        sizes="100vw"
+      />
     </div>
   );
 }
@@ -145,18 +143,14 @@ function WineSection() {
         </ScrollReveal>
       </div>
 
-      {/* Wide image */}
-      <ScrollReveal variant="scale">
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "21/8" }}>
-          <Image
-            src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1920&q=85"
-            alt="Terraced Pelješac vineyards on steep hillside"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-      </ScrollReveal>
+      {/* Wide image — parallax */}
+      <ParallaxImage
+        src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1920&q=85"
+        alt="Terraced Pelješac vineyards on steep hillside"
+        aspect="21/8"
+        depth={18}
+        sizes="100vw"
+      />
 
       {/* Narrow centered text */}
       <div className="py-40 lg:py-56 px-6 text-center">
@@ -317,18 +311,14 @@ function CyclingSection() {
         </div>
       </div>
 
-      {/* Full-width image */}
-      <ScrollReveal variant="scale">
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "21/8" }}>
-          <Image
-            src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=1920&q=85"
-            alt="Cyclist on Dalmatian coastal road"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-      </ScrollReveal>
+      {/* Full-width image — parallax */}
+      <ParallaxImage
+        src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=1920&q=85"
+        alt="Cyclist on Dalmatian coastal road"
+        aspect="21/8"
+        depth={18}
+        sizes="100vw"
+      />
     </div>
   );
 }
@@ -359,15 +349,12 @@ function VillagesSection() {
       </div>
 
       <div className="pb-52 lg:pb-72 px-6 text-center">
-        {/* Large pull quote */}
-        <ScrollReveal variant="clip">
-          <blockquote
-            className="font-display italic text-[--color-ink]/50 leading-[1.25] max-w-3xl mx-auto mb-28"
-            style={{ fontSize: "clamp(2rem, 4.5vw, 4rem)" }}
-          >
-            &ldquo;Most visitors to Croatia never find this place. That is precisely its value.&rdquo;
-          </blockquote>
-        </ScrollReveal>
+        {/* Large pull quote — scroll text reveal */}
+        <ScrollTextReveal
+          text='"Most visitors to Croatia never find this place. That is precisely its value."'
+          className="font-display italic text-[--color-ink]/50 max-w-3xl mx-auto mb-28"
+          style={{ fontSize: "clamp(2rem, 4.5vw, 4rem)" }}
+        />
 
         <ScrollReveal variant="fade" delay={0.1}>
           <p

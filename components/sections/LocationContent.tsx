@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import { DramaticCTA } from "@/components/ui/DramaticCTA";
 import {
   FaUmbrellaBeach, FaBasketShopping, FaFerry, FaGasPump,
@@ -153,16 +153,14 @@ export function LocationContent() {
         </div>
       </div>
 
-      {/* ── Aerial quote image ─────────────── */}
-      <ScrollReveal variant="scale">
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "21/8" }}>
-          <Image
-            src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1920&q=80"
-            alt="Aerial view of Pelješac peninsula"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
+      {/* ── Aerial quote image — parallax ─────────────── */}
+      <ParallaxImage
+        src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1920&q=80"
+        alt="Aerial view of Pelješac peninsula"
+        aspect="21/8"
+        depth={18}
+        sizes="100vw"
+        overlay={
           <div className="absolute inset-0 bg-black/45 flex items-center justify-center px-6">
             <ScrollReveal variant="clip">
               <p
@@ -173,8 +171,8 @@ export function LocationContent() {
               </p>
             </ScrollReveal>
           </div>
-        </div>
-      </ScrollReveal>
+        }
+      />
 
       {/* ── How to Reach Us ─── */}
       <div className="bg-[--color-sand] py-48 lg:py-72 px-6 lg:px-16">

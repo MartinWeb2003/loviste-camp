@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "motion/react";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import {
   FaUmbrellaBeach,
@@ -61,10 +61,13 @@ const stats = [
 function CountUp({ target, unit }: { target: number; unit: string }) {
   const [value, setValue] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: false, margin: "-100px" });
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView) {
+      setValue(0);
+      return;
+    }
     const duration = 1600;
     const start = Date.now();
     const timer = setInterval(() => {
@@ -87,36 +90,42 @@ function CountUp({ target, unit }: { target: number; unit: string }) {
 
 export function HomeWhyUs() {
   return (
-    <section className="bg-[--color-ink] text-white py-28 lg:py-40">
+    <section className="bg-[--color-ink] text-white py-44 lg:py-64">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <FadeIn className="text-center mb-16">
-          <SectionLabel light className="justify-center">Why Lovište</SectionLabel>
-          <h2 className="font-display text-[clamp(2.8rem,7vw,6rem)] font-bold text-white leading-tight">
-            Some Places Are Just Different
-          </h2>
-          <p className="mt-6 text-white/50 text-xl max-w-2xl mx-auto leading-relaxed">
-            Not another resort on the Dalmatian coast. This is a family home that opened its gates.
-          </p>
-        </FadeIn>
+        <div className="text-center mb-28">
+          <ScrollReveal variant="fade">
+            <SectionLabel light className="justify-center">Why Lovište</SectionLabel>
+          </ScrollReveal>
+          <ScrollReveal variant="clip" delay={0.1}>
+            <h2 className="font-display text-[clamp(2.8rem,7vw,6rem)] font-bold text-white leading-tight">
+              Some Places Are Just Different
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal variant="fade" delay={0.2}>
+            <p className="mt-10 text-white/50 text-xl max-w-2xl mx-auto leading-relaxed">
+              Not another resort on the Dalmatian coast. This is a family home that opened its gates.
+            </p>
+          </ScrollReveal>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/8">
           {stats.map((s, i) => {
             const Icon = s.icon;
             return (
-              <FadeIn key={i} delay={i * 0.07}>
-                <div className="bg-[--color-ink] p-10 lg:p-14 group hover:bg-white/5 transition-colors duration-300 h-full">
-                  <Icon className="text-[--color-sea] mb-6" size={28} />
-                  <div className="font-display text-[clamp(3.5rem,6vw,5.5rem)] font-bold text-white leading-none mb-2 tracking-tight">
+              <ScrollReveal key={i} variant="rise" delay={i * 0.08}>
+                <div className="bg-[--color-ink] p-12 lg:p-16 group hover:bg-white/5 transition-colors duration-300 h-full">
+                  <Icon className="text-[--color-sea] mb-8" size={28} />
+                  <div className="font-display text-[clamp(3.5rem,6vw,5.5rem)] font-bold text-white leading-none mb-4 tracking-tight">
                     <CountUp target={parseInt(s.stat)} unit={s.unit} />
                   </div>
-                  <p className="font-mono text-xs uppercase tracking-[0.22em] text-white/35 mb-3 group-hover:text-[--color-sea] transition-colors">
+                  <p className="font-mono text-xs uppercase tracking-[0.22em] text-white/35 mb-5 group-hover:text-[--color-sea] transition-colors">
                     {s.label}
                   </p>
                   <p className="text-white/45 text-base leading-relaxed group-hover:text-white/60 transition-colors">
                     {s.desc}
                   </p>
                 </div>
-              </FadeIn>
+              </ScrollReveal>
             );
           })}
         </div>

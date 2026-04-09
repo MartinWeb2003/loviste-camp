@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import { DramaticCTA } from "@/components/ui/DramaticCTA";
 import {
   FaBolt, FaDroplet, FaTree, FaWifi, FaFireBurner, FaCar,
@@ -75,18 +76,14 @@ function CampingSection() {
         </div>
       </div>
 
-      {/* Second image full width */}
-      <ScrollReveal variant="scale">
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "21/7" }}>
-          <Image
-            src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1600&q=85"
-            alt="Campsite at dusk with firepit"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-      </ScrollReveal>
+      {/* Second image full width — parallax */}
+      <ParallaxImage
+        src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1600&q=85"
+        alt="Campsite at dusk with firepit"
+        aspect="21/7"
+        depth={16}
+        sizes="100vw"
+      />
 
       {/* Feature strip */}
       <div className="bg-[--color-sand] py-32 lg:py-44 px-6 lg:px-16">
@@ -145,18 +142,14 @@ function GuestHousesSection() {
         </ScrollReveal>
       </div>
 
-      {/* Wide image */}
-      <ScrollReveal variant="scale">
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/7" }}>
-          <Image
-            src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1600&q=85"
-            alt="Stone guest house terrace overlooking the sea"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-      </ScrollReveal>
+      {/* Wide image — parallax */}
+      <ParallaxImage
+        src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1600&q=85"
+        alt="Stone guest house terrace overlooking the sea"
+        aspect="16/7"
+        depth={16}
+        sizes="100vw"
+      />
 
       {/* Narrow centered editorial text */}
       <div className="py-40 lg:py-56 px-6 text-center">
@@ -384,18 +377,14 @@ function ApartmentsSection() {
         </ScrollReveal>
       </div>
 
-      {/* Panoramic image */}
-      <ScrollReveal variant="scale">
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "21/9" }}>
-          <Image
-            src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=85"
-            alt="Apartment balcony overlooking Viganj village and sea"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-      </ScrollReveal>
+      {/* Panoramic image — parallax */}
+      <ParallaxImage
+        src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=85"
+        alt="Apartment balcony overlooking Viganj village and sea"
+        aspect="21/9"
+        depth={16}
+        sizes="100vw"
+      />
 
       {/* Features */}
       <div className="bg-[--color-sand] py-32 lg:py-44 px-6 lg:px-16">

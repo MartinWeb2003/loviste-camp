@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { ParallaxImage } from "@/components/ui/ParallaxImage";
+import { ScrollTextReveal } from "@/components/ui/ScrollTextReveal";
 import { DramaticCTA } from "@/components/ui/DramaticCTA";
 
 const chapters = [
@@ -70,19 +72,14 @@ export function StoryContent() {
   return (
     <div className="bg-white">
 
-      {/* Opening quote */}
-      <div className="py-52 lg:py-72 px-6 text-center">
-        <ScrollReveal variant="clip">
-          <blockquote
-            className="font-display italic text-[--color-ink]/60 leading-[1.25] max-w-3xl mx-auto"
-            style={{ fontSize: "clamp(1.8rem, 4vw, 3.5rem)" }}
-          >
-            &ldquo;In Lovište, time moves at the rhythm of the sea.
-            <br />
-            It always has. It always will.&rdquo;
-          </blockquote>
-        </ScrollReveal>
-        <ScrollReveal variant="fade" delay={0.25}>
+      {/* Opening quote — scroll text reveal */}
+      <div className="py-52 lg:py-80 px-6 text-center">
+        <ScrollTextReveal
+          text="In Lovište, time moves at the rhythm of the sea. It always has. It always will."
+          className="font-display italic text-[--color-ink]/60 max-w-3xl mx-auto"
+          style={{ fontSize: "clamp(1.8rem, 4vw, 3.5rem)" }}
+        />
+        <ScrollReveal variant="fade" delay={0.1}>
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-[--color-sea] mt-14">
             — The Family, Viganj
           </p>
@@ -110,34 +107,31 @@ export function StoryContent() {
             </ScrollReveal>
           </div>
 
-          {/* Wide image — edge to edge */}
-          <ScrollReveal variant="scale">
-            <div className="relative w-full overflow-hidden" style={{ aspectRatio: "21/8" }}>
-              <Image
-                src={ch.imageWide.src}
-                alt={ch.imageWide.alt}
-                fill
-                className="object-cover"
-                sizes="100vw"
-              />
-            </div>
-            <div className="px-6 lg:px-16 pt-6 pb-0">
-              <p className="font-mono text-xs text-[--color-muted] tracking-[0.12em] max-w-7xl mx-auto">
-                {ch.imageWide.caption}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          {/* Chapter intro */}
-          <div className="py-40 lg:py-56 px-6 text-center">
-            <ScrollReveal variant="clip">
-              <p
-                className="font-display italic text-[--color-ink]/70 leading-[1.35] max-w-2xl mx-auto"
-                style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}
-              >
-                {ch.intro}
-              </p>
+          {/* Wide image — parallax */}
+          <div>
+            <ParallaxImage
+              src={ch.imageWide.src}
+              alt={ch.imageWide.alt}
+              aspect="21/8"
+              depth={20}
+              sizes="100vw"
+            />
+            <ScrollReveal variant="fade">
+              <div className="px-6 lg:px-16 pt-6 pb-0">
+                <p className="font-mono text-xs text-[--color-muted] tracking-[0.12em] max-w-7xl mx-auto">
+                  {ch.imageWide.caption}
+                </p>
+              </div>
             </ScrollReveal>
+          </div>
+
+          {/* Chapter intro — scroll text reveal */}
+          <div className="py-44 lg:py-60 px-6 text-center">
+            <ScrollTextReveal
+              text={ch.intro}
+              className="font-display italic text-[--color-ink]/70 max-w-2xl mx-auto"
+              style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}
+            />
           </div>
 
           {/* Text + portrait image */}
