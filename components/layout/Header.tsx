@@ -7,6 +7,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
+  { label: "Home", href: "/" },
   { label: "Our Story", href: "/story" },
   { label: "Stay", href: "/stay" },
   { label: "Experiences", href: "/experiences" },
